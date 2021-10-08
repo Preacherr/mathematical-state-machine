@@ -23,12 +23,9 @@ function msm.new(inputs)
 	local states = {}
 	inputs = inputs or {}
 	
-	local data = {
-		states = states;
-		inputs = inputs;
-	}
+	local functions = {}
 	
-	data.setInput = function(name, value)
+	functions.setInput = function(name, value)
 		inputs[name] = value
 		
 		for i,v in pairs(states) do
@@ -38,7 +35,7 @@ function msm.new(inputs)
 		end
 	end
 	
-	data.newState = function(name, inputs, evalFunc, threshold)
+	functions.newState = function(name, inputs, evalFunc, threshold)
 		local newState = {
 			inputs = inputs or nil; --table of strings
 			threshold = threshold or defaultThreshold;
@@ -57,11 +54,11 @@ function msm.new(inputs)
 		states[name] = newState
 	end
 	
-	data.getState = function(name) --shortcut for just manually referencing it, not necessary
+	functions.getState = function(name) --shortcut for just manually referencing it, not necessary
 		return states[name].output
 	end
 	
-	return data
+	return functions
 end
 
 
