@@ -31,15 +31,18 @@ function msm.new(inputs)
 		for i,v in pairs(states) do
 			if v.inputs[name] then
 				v.output = v.evalFunc(inputs, v)
+				if v.isInput then
+					inputs[i] = v.output
+				end
 			end
 		end
 	end
 	
-	functions.newState = function(name, inputs, evalFunc, threshold)
+	functions.newState = function(name, inputs, evalFunc)
 		local newState = {
 			inputs = inputs or nil; --table of strings
-			threshold = threshold or defaultThreshold;
 			output = false;
+			isInput = false;
 		}
 		
 		local evalType = type(evalFunc)
