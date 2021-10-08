@@ -54,7 +54,7 @@ function msm.new(inputs)
 		states[name] = newState
 	end
 	
-	functions.getState = function(name) --shortcut for just manually referencing it, not necessary
+	functions.getStateOutput = function(name) --shortcut for just manually referencing it, not necessary
 		return states[name].output
 	end
 	
